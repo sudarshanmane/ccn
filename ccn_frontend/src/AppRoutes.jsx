@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { Auth } from "./pages/auth/Auth.jsx";
 import SignInContailer from "./components/organisms/Auth/SignInContailer.jsx";
 import SignupContainer from "./components/organisms/Auth/SignupContainer.jsx";
@@ -8,8 +8,6 @@ import ProtectedRoutes from "./components/molecules/protectedRoutes/ProtectedRou
 import CandidateNotes from "./pages/candidateNotes/CandidateNotes.jsx";
 import { useAuth } from "./hooks/context/userAuth.js";
 import Navbar from "./pages/navbar/Navbar.jsx";
-import { DashboardNotifications } from "./components/molecules/notifications/DashboardNotification.jsx";
-import { NotificationBell } from "./components/atoms/notification/NotificationBell.jsx";
 
 const AppRoutes = () => {
   const { auth } = useAuth();
@@ -22,6 +20,10 @@ const AppRoutes = () => {
       )}
 
       <Routes>
+        <Route
+          path="/"
+          element={<Navigate to={"/dashbord"}></Navigate>}
+        ></Route>
         <Route
           path="/auth/signin"
           element={

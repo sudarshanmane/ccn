@@ -62,5 +62,5 @@ export const isAuthenticated = async (req, res, next) => {
 };
 
 export const generateJwtToken = (payload) => {
-  return jwt.sign(payload, JWT_SCERET, { expiresIn: "100d" });
+  return jwt.sign(payload, JWT_SCERET, { expiresIn: "10d" });
 };

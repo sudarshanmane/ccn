@@ -1,4 +1,4 @@
-CCN (Candidate Collaboration Notes)
+<img width="378" height="314" alt="{A0752FD9-4FB6-40D0-AEC8-5FC49C00E787}" src="https://github.com/user-attachments/assets/c28886ef-4cf7-4b58-a285-220efa1614f9" />CCN (Candidate Collaboration Notes)
 GitHub Repository
 Repository: https://github.com/sudarshanmane/ccn
 ________________________________________
@@ -123,9 +123,5 @@ Backend
 •	Rate Limiting
 •	Input sanitation
 
- 
-
- 
- 
  
  

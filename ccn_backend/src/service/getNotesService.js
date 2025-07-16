@@ -1,3 +1,4 @@
+import { createNotifications } from "../controller/NotificationController.js";
 import noteRepository from "../repository/notesRepository.js";
 
 export const getNotesService = async (req) => {
@@ -8,8 +9,7 @@ export const getNotesService = async (req) => {
         { path: "taggedUsers", select: "name" },
       ],
       {
-        candidateId: req.query.candidateId,
-        $or: [{ authorId: userId }, { taggedUsers: req.userId }],
+        candidateId: req.params.candidateId,
       }
     );
     return notes;
@@ -19,10 +19,18 @@ export const getNotesService = async (req) => {
   }
 };
 
-export const postNotesService = async (candidateData) => {
+export const postNotesService = async (user, candidateData) => {
   try {
-    const newCandidate = await noteRepository.create(candidateData);
-    return newCandidate;
+    const note = await noteRepository.create(candidateData);
+
+    await createNotifications({
+      taggedUsers: candidateData.taggedUsers,
+      content: candidateData.content,
+      candidateId: candidateData.candidateId,
+      noteId: note._id,
+    });
+
+    return note;
   } catch (error) {
     throw error;
   }

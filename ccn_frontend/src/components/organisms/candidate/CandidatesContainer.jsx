@@ -1,5 +1,5 @@
 import { useGetCandidates } from "@/hooks/candidates/useGetCandidates.js";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CandidateList from "./CandidateList.jsx";
 
 const CandidatesContainer = () => {
@@ -25,12 +25,6 @@ const CandidatesContainer = () => {
       date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
     );
   };
-
-  useEffect(() => {
-    if (data) {
-      console.log("Fetched candidates:", data);
-    }
-  }, [data]);
 
   return (
     <CandidateList

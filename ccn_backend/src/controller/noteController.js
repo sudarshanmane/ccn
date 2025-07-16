@@ -29,7 +29,7 @@ export const getNotesController = async (req, res, next) => {
 
 export const postNotesController = async (req, res, next) => {
   try {
-    const response = await postNotesService(req.body);
+    const response = await postNotesService(req?.user?.username, req.body);
 
     return res
       .status(StatusCodes.CREATED)

@@ -4,7 +4,7 @@ export const DashboardNotifications = () => {
   const { notifications, markAsRead } = useNotifications();
 
   return (
-    <div className="p-4 bg-white rounded shadow-md space-y-3">
+    <div className="p-4 mt-3 mb-3 bg-white rounded shadow-md space-y-3">
       <h3 className="text-lg font-semibold">Notifications</h3>
       {notifications.length === 0 ? (
         <p className="text-sm text-gray-500">No notifications yet.</p>

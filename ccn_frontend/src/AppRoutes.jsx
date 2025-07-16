@@ -9,14 +9,14 @@ import CandidateNotes from "./pages/candidateNotes/CandidateNotes.jsx";
 import { useAuth } from "./hooks/context/userAuth.js";
 import Navbar from "./pages/navbar/Navbar.jsx";
 import { DashboardNotifications } from "./components/molecules/notifications/DashboardNotification.jsx";
+import { NotificationBell } from "./components/atoms/notification/NotificationBell.jsx";
 
 const AppRoutes = () => {
   const { auth } = useAuth();
   return (
     <>
       {auth?.user && auth?.token && (
-        <div>
-          <DashboardNotifications></DashboardNotifications>
+        <div className="">
           <Navbar></Navbar>
         </div>
       )}

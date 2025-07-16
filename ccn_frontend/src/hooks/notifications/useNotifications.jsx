@@ -24,6 +24,9 @@ export const useNotifications = () => {
         headers: { "x-access-token": auth?.token },
       }
     );
+
+    console.log("inside markAsRead");
+
     fetchNotifications();
   };
 

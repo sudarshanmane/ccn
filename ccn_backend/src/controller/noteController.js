@@ -5,17 +5,17 @@ import {
   successReponse,
 } from "../utils/common/customObjects.js";
 import {
-  getCandidatesService,
-  postCandidateService,
-} from "../service/candidateService.js";
+  getNotesService,
+  postNotesService,
+} from "../service/getNotesService.js";
 
-export const getCandidatesController = async (req, res, next) => {
+export const getNotesController = async (req, res, next) => {
   try {
-    const response = await getCandidatesService(req);
+    const response = await getNotesService(req);
 
     return res
       .status(StatusCodes.CREATED)
-      .json(successReponse(response, "Candidates Fetched Successfully!"));
+      .json(successReponse(response, "Notes Fetched Successfully!"));
   } catch (error) {
     if (error.statusCode) {
       return res.status(error.statusCode).json(customErrorResponse(error));
@@ -27,13 +27,13 @@ export const getCandidatesController = async (req, res, next) => {
   }
 };
 
-export const postCandidateController = async (req, res, next) => {
+export const postNotesController = async (req, res, next) => {
   try {
-    const response = await postCandidateService(req.body);
+    const response = await postNotesService(req.body);
 
     return res
       .status(StatusCodes.CREATED)
-      .json(successReponse(response, "Candidate Created Successfully!"));
+      .json(successReponse(response, "Note Created Successfully!"));
   } catch (error) {
     if (error.statusCode) {
       return res.status(error.statusCode).json(customErrorResponse(error));

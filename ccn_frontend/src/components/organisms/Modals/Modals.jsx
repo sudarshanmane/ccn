@@ -1,3 +1,5 @@
+import CreateCandidateModal from "@/components/molecules/createCandidateModal/CreateCandidateModal.jsx";
+
 export const Modals = () => {
-  return <>modals</>;
+  return <CreateCandidateModal></CreateCandidateModal>;
 };

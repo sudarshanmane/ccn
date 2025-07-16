@@ -1,6 +1,10 @@
 import { StatusCodes } from "http-status-codes";
 import ClientError from "../utils/errors/clientError.js";
-import { signUpService, userLoginService } from "../service/userService.js";
+import {
+  getUserService,
+  signUpService,
+  userLoginService,
+} from "../service/userService.js";
 import {
   customErrorResponse,
   internalServerErrorResponse,
@@ -52,5 +56,23 @@ export const userLoginController = async (req, res, next) => {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(customErrorResponse(error));
+  }
+};
+
+export const getUserController = async (req, res, next) => {
+  try {
+    const response = await getUserService(req);
+
+    return res
+      .status(StatusCodes.CREATED)
+      .json(successReponse(response, "Users Fetched Successfully!"));
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json(customErrorResponse(error));
+    }
+
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(internalServerErrorResponse(error));
   }
 };

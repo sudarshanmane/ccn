@@ -1,7 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { generateJwtToken } from "../middlewares/authMiddleware.js";
 import userRepository from "../repository/userRepository.js";
-import User from "../schema/usrerSchema.js";
 import ClientError from "../utils/errors/clientError.js";
 import ValidationError from "../utils/errors/validationError.js";
 
@@ -65,6 +64,16 @@ export const userLoginService = async (email, password) => {
       return { user: userExists, token };
     }
   } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserService = async (req) => {
+  try {
+    const users = await userRepository.getAll();
+    return users;
+  } catch (error) {
+    console.error("Error fetching usrs:", error);
     throw error;
   }
 };

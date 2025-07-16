@@ -7,19 +7,41 @@ import { Server } from "socket.io";
 import connectDB from "./src/config/dbConfig.js";
 import { PORT } from "./src/config/serverConfig.js";
 import apiRouter from "./src/routes/apiRoutes.js";
-// import apiRouter from "./routes/apiRoutes.js";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173", // or whatever port Vite is running on
+    credentials: true,
+  })
+);
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  },
+});
 
 io.on("connection", (socket) => {
   // messageHandlers(io, socket);
   // messageSocketHandlers(io, socket);
-});
 
-app.use(cors("*"));
+  console.log("User connected:", socket.id);
+
+  socket.on("joinRoom", (candidateId) => {
+    socket.join(candidateId);
+  });
+
+  socket.on("sendMessage", (data) => {
+    io.to(data.candidateId).emit("receiveMessage", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));

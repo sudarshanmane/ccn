@@ -42,10 +42,10 @@ const SignupContainer = () => {
   }
 
   useEffect(() => {
-    toast.success(data?.message, {
-      description: "Your account has been created successfully!",
-    });
     if (isSuccess) {
+      toast.success(data?.message, {
+        description: "Your account has been created successfully!",
+      });
       setTimeout(() => {
         navigate("/auth/signin");
       }, 3000);
